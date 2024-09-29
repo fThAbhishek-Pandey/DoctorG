@@ -1,11 +1,11 @@
 import React from 'react'
-import Header from '../components/Header'
-import SpeciallityMenu from '../components/SpeciallityMenu'
-import TopDoctor from '../components/TopDoctor'
-import Banner from '../components/banner'
+import Header from '../components/home/Header'
+import SpeciallityMenu from '../components/home/SpeciallityMenu'
+import TopDoctor from '../components/home/TopDoctor'
+import Banner from '../components/home/banner'
 const Home = () => {
   return (
-    <div>Homepage
+    <div>
       <Header />
       <SpeciallityMenu/>
       <TopDoctor />
