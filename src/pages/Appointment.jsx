@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import Abouts from "../components/Appointment/abouts";
 import Dating from "../components/Appointment/Sloting";
+import RelatedDocters from '../components/Appointment/RelatedDocters'
 const Appointment = () => {
   const { docId } = useParams();
   const { doctors,currencySymbol } = useContext(AppContext);
@@ -20,7 +21,9 @@ const Appointment = () => {
       <div>
          {/* -------- Doctors Details ------------- */}
          <Abouts doctorInfo={doctorInfo} currencySymbol={currencySymbol} />
-         <Dating /></div>
+         <Dating />
+         <RelatedDocters docId={docId} speciality={doctorInfo.speciality} />
+         </div>
     )
   );
 };
