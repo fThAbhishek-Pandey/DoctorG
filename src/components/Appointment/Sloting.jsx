@@ -80,7 +80,11 @@ const Dating = () => {
                           }</p>
                    ))
                  }
+                 
               </div>
+              
+         <button className="bg-primary text-white text-sm font-light px-14 py-3 rounded-full my-6">Book an Appointment</button>
+      
     </div>
   )
 }

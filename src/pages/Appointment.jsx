@@ -20,8 +20,7 @@ const Appointment = () => {
       <div>
          {/* -------- Doctors Details ------------- */}
          <Abouts doctorInfo={doctorInfo} currencySymbol={currencySymbol} />
-         <Dating />
-      </div>
+         <Dating /></div>
     )
   );
 };
