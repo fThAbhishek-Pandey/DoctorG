@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import Abouts from "../components/Appointment/abouts";
+import Dating from "../components/Appointment/Sloting";
 const Appointment = () => {
   const { docId } = useParams();
   const { doctors,currencySymbol } = useContext(AppContext);
@@ -19,6 +20,7 @@ const Appointment = () => {
       <div>
          {/* -------- Doctors Details ------------- */}
          <Abouts doctorInfo={doctorInfo} currencySymbol={currencySymbol} />
+         <Dating />
       </div>
     )
   );
