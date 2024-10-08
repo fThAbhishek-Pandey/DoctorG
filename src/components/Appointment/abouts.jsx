@@ -25,7 +25,7 @@ const Abouts = ({doctorInfo,currencySymbol}) => {
              <p className="text-sm text-gray-500 max-w-[700px] mt-1">{doctorInfo.about}</p>
            </div>
            <p className="text-gray-500 font-medium mt-4 ">
-             Appointment fee :  <span className="text-gray.600">{currencySymbol}{doctorInfo.fee}</span>
+             Appointment fee :  <span className="text-gray.600">{currencySymbol}{" "}{doctorInfo.fees}</span>
            </p>
      </div>
    </div>
