@@ -7,7 +7,7 @@ const FilteredDocter = ({doctors}) => {
           {
             doctors.map((item,idx)=>(
               <div className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500' key={"fth02"+idx}>
-                  <img onClick={()=>{Navigate(`/appointment/${item._id}`);scrollTo(0,0)}} className='bg-blue-50' src={item.image} alt={item.name} />
+                  <img onClick={()=>{Navigate(`/appointment/${item._id}`);scrollTo(0,0)}} className='bg-blue-50 ' src={item.image} alt={item.name} />
                   <div className='p-4'>
                       <div className='flex items-center text-sm gap-2 text-center text-green-500'>
                           <p className='w-2 h-2 bg-green-500 rounded-full'></p>
