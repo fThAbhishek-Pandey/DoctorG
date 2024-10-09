@@ -1,14 +1,16 @@
-import React, {useState,useContext} from 'react';
+import React, {useState,useContext, useEffect} from 'react';
 import { AppContext } from '../context/AppContext';
-import GetToken from '../components/loginAndRegistation/getToken';
-import { toast } from 'react-toastify';
-import { redirect } from 'react-router-dom';
+import GetToken from '../components/loginAndRegistation/getTokenLogin.jsx';
+import GetTokenResister from '../components/loginAndRegistation/resistation.jsx';
+import { useNavigate } from 'react-router-dom';
+import GetUser from '../components/loginAndRegistation/getUser.jsx';
 const Login = () => {
   const [state ,setState] = useState("Sign Up");
   const [email, setEmail] = useState('');
   const [passward,setPassward]= useState('');
   const [name ,setName]= useState('');
-  const {token, setToken,backendURL} = useContext(AppContext);
+  const { token, setToken,backendURL, setUserProfile} = useContext(AppContext);
+  const navigate = useNavigate();
   const onSubmitHandler = async (event)=>{
        event.preventDefault();
        console.log("onSubmitHandler is called", state)
@@ -19,18 +21,33 @@ const Login = () => {
           if(data.success){
             console.log("i am success 02", data)
             setToken(data.user_token)
+            setUserProfile(data.user);
+            localStorage.setItem('user_token',data.user_token)
+            localStorage.setItem('user_id',data.user._id);
             console.log("user_token : ",data.user_token)  
           }
         }
         else {
-              toast     
+          const data = await GetTokenResister(name, email , passward,backendURL)
+          console.log("data in Register : ", data)
+          if(data.success){
+            console.log("i am success 02", data)
+            setToken(data.user_token)
+            setUserProfile(data.user);
+            console.log("user_token : ",data.user_token)   
         }
         
-       } catch (error) {
+       } 
+      }catch (error) {
            console.log(error);
         }
       
   }
+  useEffect(()=>{
+     if(token){
+      navigate('/');
+     }
+  },[token])
   return (
     <form onSubmit={onSubmitHandler} className='min-h-[80vh] flex items-center '>
         <div className='flex flex-col gap-3 m-auto min-w-[340px] sm:min-w-96 border' >
