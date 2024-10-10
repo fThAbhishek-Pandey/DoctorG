@@ -3,7 +3,6 @@ import { AppContext } from '../context/AppContext';
 import GetToken from '../components/loginAndRegistation/getTokenLogin.jsx';
 import GetTokenResister from '../components/loginAndRegistation/resistation.jsx';
 import { useNavigate } from 'react-router-dom';
-import GetUser from '../components/loginAndRegistation/getUser.jsx';
 const Login = () => {
   const [state ,setState] = useState("Sign Up");
   const [email, setEmail] = useState('');
@@ -21,9 +20,7 @@ const Login = () => {
           if(data.success){
             console.log("i am success 02", data)
             setToken(data.user_token)
-            setUserProfile(data.user);
             localStorage.setItem('user_token',data.user_token)
-            localStorage.setItem('user_id',data.user._id);
             console.log("user_token : ",data.user_token)  
           }
         }
@@ -31,9 +28,9 @@ const Login = () => {
           const data = await GetTokenResister(name, email , passward,backendURL)
           console.log("data in Register : ", data)
           if(data.success){
-            console.log("i am success 02", data)
+            console.log("i am success 03", data)
             setToken(data.user_token)
-            setUserProfile(data.user);
+            localStorage.setItem('user_token',data.user_token)
             console.log("user_token : ",data.user_token)   
         }
         

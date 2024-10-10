@@ -30,13 +30,10 @@ const AppContextProvider = ( props)=>{
         useEffect(()=>{getAllDoctors()},[])
         useEffect(()=>{
             console.log("i am refresh call ")
-            if (localStorage.getItem('user_id')){
-            const user =  GetUser(backendURL, localStorage.getItem('user_id'), setUserProfile );
-            console.log("user in get user :",user);
-        }
-          
-           
-         },[])
+            
+            const user =  GetUser(backendURL, localStorage.getItem('user_token'), setUserProfile );
+            console.log("user in get user :",user);  
+         },[token])
         const value ={
             doctors,currencySymbol,backendURL, token, setToken,userProfile, setUserProfile
         }

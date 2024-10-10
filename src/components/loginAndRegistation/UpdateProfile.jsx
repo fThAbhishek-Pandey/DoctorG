@@ -1,9 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-const UpdateProfile = async( backendURL,id,userProfile) => {
+const UpdateProfile = async( backendURL,token,userData) => {
     try {
-        const res = await axios.put(backendURL+ `/api/user/update/${id}`,userProfile)
+        const res = await axios.put(backendURL+ `/api/user/profile/edit`,userData,{headers:{user_token: token}})
         if(res.success){
             toast.success(res.message);
         }
@@ -11,9 +11,6 @@ const UpdateProfile = async( backendURL,id,userProfile) => {
         console.log(error)
         toast.error(error.message);
     }
-  return (
-    <div>UpdateProfile</div>
-  )
 }
 
 export default UpdateProfile

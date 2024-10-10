@@ -3,12 +3,19 @@ import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
 import UpdateProfile from "../components/loginAndRegistation/UpdateProfile";
 const MyProfile = () => {
-  const {userProfile, setUserProfile, backendURL} = useContext(AppContext);
+  const {userProfile, setUserProfile, backendURL, token} = useContext(AppContext);
   const [isEdit, setIsEdit] = useState(false);
-
+   console.log ("user_token",token)
   const onSave = async ()=>{
         console.log("i am onSave");
-        await UpdateProfile(backendURL , userProfile._id ,userProfile);
+        const userData = {
+          name : userProfile.name,
+        address : userProfile.address,
+        phone : userProfile.phone,
+        gender : userProfile.gender,
+        dob : userProfile.dob,
+        }
+        await UpdateProfile(backendURL ,token,userData);
         setIsEdit(false)
   }
   useEffect(()=>onSave, []);
@@ -113,8 +120,11 @@ const MyProfile = () => {
               className="max-w-28 bg-gray-100"
               type="date"
               value={userProfile.dob}
-              onChange={(e) => (prev) =>
-                setUserProfile({ ...prev, dob: e.target.value })}
+              onChange={(e) => (prev) =>{
+                const newDate = moment(new Date(e.target.value)).format('DD-MM-YYYY');
+                setUserProfile({ ...prev, dob:newDate })
+                console.log(userProfile.dob, newDate);
+              }}    
             />
           ) : (
             <p className="text-gray-400">{userProfile.dob}</p>
