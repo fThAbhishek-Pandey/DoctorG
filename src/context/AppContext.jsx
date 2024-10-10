@@ -11,7 +11,7 @@ const AppContextProvider = ( props)=>{
         const [doctors,setDoctors]= useState([]);
         const backendURL= import.meta.env.VITE_BACKEND_URL;
         const [userProfile, setUserProfile] = useState([]);
-        const [token, setToken] =useState(localStorage.getItem('user_token')||'');
+        const [user_token, setToken] =useState(localStorage.getItem('user_token')||'');
         const getAllDoctors = async()=>{
             console.log("i am called : ");
             try {
@@ -30,12 +30,16 @@ const AppContextProvider = ( props)=>{
         useEffect(()=>{getAllDoctors()},[])
         useEffect(()=>{
             console.log("i am refresh call ")
-            
+         if(user_token){
             const user =  GetUser(backendURL, localStorage.getItem('user_token'), setUserProfile );
             console.log("user in get user :",user);  
-         },[token])
+         }   
+          else {
+            setUserProfile(false);
+          }  
+         },[user_token])
         const value ={
-            doctors,currencySymbol,backendURL, token, setToken,userProfile, setUserProfile
+            doctors,currencySymbol,backendURL, user_token, setToken,userProfile, setUserProfile,GetUser
         }
         
         return (

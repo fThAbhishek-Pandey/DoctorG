@@ -1,27 +1,40 @@
 import React, { useState,useContext, useEffect } from "react";
-import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
 import UpdateProfile from "../components/loginAndRegistation/UpdateProfile";
+import {assets} from '../assets/assets.js'
 const MyProfile = () => {
-  const {userProfile, setUserProfile, backendURL, token} = useContext(AppContext);
+  const {userProfile, setUserProfile, backendURL, user_token} = useContext(AppContext);
   const [isEdit, setIsEdit] = useState(false);
-   console.log ("user_token",token)
+  const [image, setImage] = useState(false);
+   console.log ("user_token",user_token)
+
   const onSave = async ()=>{
         console.log("i am onSave");
-        const userData = {
-          name : userProfile.name,
-        address : userProfile.address,
-        phone : userProfile.phone,
-        gender : userProfile.gender,
-        dob : userProfile.dob,
-        }
-        await UpdateProfile(backendURL ,token,userData);
+        console.log("onsave : ", userProfile);
+        const formData = new FormData()
+        formData.append('name',userProfile.name)
+        formData.append('address',userProfile.email)
+        formData.append('phone',userProfile.phone)
+        formData.append('gender',userProfile.gender)
+        formData.append('dob',userProfile.dob)
+        image && formData.append('image',image)
+        await UpdateProfile(backendURL ,user_token,formData);
         setIsEdit(false)
   }
   useEffect(()=>onSave, []);
-  return (
+  return userProfile && (
     <div className="max-w-lg flex flex-col gap-2 text-sm">
-      <img className="w-36 rounded" src={userProfile.image} alt={userProfile.name} />
+      {
+        isEdit
+        ? <label htmlFor="userProfilepic">
+          <div className="inline-block relative cursor-pointer">
+            <img className="w-36 rounded opacity-75 " src={image ? URL.createObjectURL(image) : userProfile.image} alt=""  />
+            <img className="w-10 absolute bottom-12 right-12"    src={image? '': assets.upload_icon} alt="" />
+          </div>
+          <input onChange={(e)=>setImage(e.target.files[0])} type="file" name="" id="userProfilepic" hidden />
+        </label>
+        : <img className="w-36 rounded" src={userProfile.image} alt={userProfile.name} />
+      }
       {isEdit ? (
         <input
           className="bg-gray-50 text-3xl font-medium max-w-60 mt-4"
@@ -119,15 +132,15 @@ const MyProfile = () => {
             <input
               className="max-w-28 bg-gray-100"
               type="date"
-              value={userProfile.dob}
-              onChange={(e) => (prev) =>{
-                const newDate = moment(new Date(e.target.value)).format('DD-MM-YYYY');
-                setUserProfile({ ...prev, dob:newDate })
-                console.log(userProfile.dob, newDate);
-              }}    
+              value={userProfile.dob||"2005-12-01"}
+              onChange={(e) => (setUserProfile((prev) =>({
+                  ...prev,
+                  dob: e.target.value,
+              }))
+          )}  
             />
           ) : (
-            <p className="text-gray-400">{userProfile.dob}</p>
+            <p className="text-gray-400">{userProfile.dob||"2005-12-01"}</p>
           )}
         </div>
       </div>

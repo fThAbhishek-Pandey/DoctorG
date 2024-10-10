@@ -15,10 +15,10 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AppContext } from "./context/AppContext";
 const App = () => {
-  const { token } = useContext(AppContext);
+  const { user_token } = useContext(AppContext);
  return (<div>
    {
-      !token ? (
+      !user_token ? (
       <div className="mx-4 sm:mx-[10%]">
         <Navbar />
         <Login />

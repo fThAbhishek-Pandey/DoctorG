@@ -5,7 +5,7 @@ import { AppContext } from '../context/AppContext.jsx'
 const Navbar = () => {
     const Navigate = useNavigate();
     const [showMenu, setShowMenu] = useState(false);
-    const {token, setToken,userProfile} = useContext(AppContext);
+    const {user_token, setToken,userProfile} = useContext(AppContext);
     console.log(userProfile);
     const logOut = ()=>{
         console.log("i am logout function : ")
@@ -35,7 +35,7 @@ const Navbar = () => {
         </ul>
         <div className='flex items-center gap-4'>
             {
-                token? <div className='flex items-center gap-2 cursor-pointer group relative'>
+                user_token? <div className='flex items-center gap-2 cursor-pointer group relative'>
                     <img className="w-8 rounded-full " src={userProfile.image} alt={userProfile.name} />
                      <img src= {assets.dropdown_icon} alt="" />
                      <div className='absolute top-0 right-0 pt-14 font-medium text-gray-600 hidden group-hover:block '>
