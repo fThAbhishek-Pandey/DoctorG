@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 import { toast } from "react-toastify";
 const BookAppointments = async (user_token,backendURL, navigate,slotIndex, setSlotIndex,doctorSlot, setDoctorSlot,docId,slotTime,getAllDoctors) => {
   if (!user_token) {
