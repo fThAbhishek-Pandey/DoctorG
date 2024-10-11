@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import { doctors } from "../../assets/assets";
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import BookAppointments from "./bookAppointment";
@@ -25,15 +24,17 @@ const Sloting = () => {
   useEffect(fetchDocInfo , [doctors, docId]);
 
   useEffect( () => {
-    console.log("docinfo 01",docInfo )
+    // console.log("docinfo 01",docInfo )
     if (docInfo)
      GetAvailableSlot(setDoctorSlot, docInfo);
-     console.log("useffect : ",typeof doctorSlot, docInfo)
-  },[docInfo]);
+    //  console.log("useffect : ",typeof doctorSlot, docInfo)
+  },[docInfo,doctorSlot]);
 
   const onAppointmentHandler = async () => {
-    console.log("i am  onAppointmentHandler");
+    // console.log("i am  onAppointmentHandler");
     await BookAppointments(user_token, backendURL, navigate,slotIndex, setSlotIndex,doctorSlot, setDoctorSlot,docId,slotTime,getAllDoctors);
+ 
+ 
   };
 
   return (

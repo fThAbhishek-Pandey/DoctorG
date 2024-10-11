@@ -3,14 +3,14 @@ import { AppContext } from "../context/AppContext";
 import UpdateProfile from "../components/loginAndRegistation/UpdateProfile";
 import {assets} from '../assets/assets.js'
 const MyProfile = () => {
-  const {userProfile, setUserProfile, backendURL, user_token} = useContext(AppContext);
+  const {userProfile, setUserProfile, backendURL, user_token, GetUser} = useContext(AppContext);
   const [isEdit, setIsEdit] = useState(false);
   const [image, setImage] = useState(false);
-   console.log ("user_token",user_token)
+  // console.log ("user_token",user_token)
 
   const onSave = async ()=>{
-        console.log("i am onSave");
-        console.log("onsave : ", userProfile);
+        // console.log("i am onSave");
+        // console.log("onsave : ", userProfile);
         const formData = new FormData()
         formData.append('name',userProfile.name)
         formData.append('address',userProfile.email)
@@ -19,9 +19,9 @@ const MyProfile = () => {
         formData.append('dob',userProfile.dob)
         image && formData.append('image',image)
         await UpdateProfile(backendURL ,user_token,formData);
+        await GetUser(backendURL,localStorage.getItem("user_token"), setUserProfile)
         setIsEdit(false)
   }
-  useEffect(()=>onSave, []);
   return userProfile && (
     <div className="max-w-lg flex flex-col gap-2 text-sm">
       {
