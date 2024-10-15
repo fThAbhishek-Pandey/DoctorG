@@ -33,7 +33,7 @@ const Sloting = () => {
   const onAppointmentHandler = async () => {
     // console.log("i am  onAppointmentHandler");
     await BookAppointments(user_token, backendURL, navigate,slotIndex, setSlotIndex,doctorSlot, setDoctorSlot,docId,slotTime,getAllDoctors);
- 
+    GetAvailableSlot(setDoctorSlot, docInfo);
  
   };
 
