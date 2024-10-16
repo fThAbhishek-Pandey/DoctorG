@@ -15,7 +15,7 @@ const Footer = () => {
             <div>
                 <p className='text-xl font-medium mb-5'>Quick Link</p>
                 <ul className='flex- flex-col gap-2 text-gray-600'>
-                    <li>Home</li>
+                    <li><NavLink></NavLink></li>
                     <li>About us</li>
                     <li>Contact us</li>
                 </ul>
