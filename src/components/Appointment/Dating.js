@@ -31,13 +31,14 @@ const GetAvailableSlot = (setDoctorSlot, docInfo) => {
       const slotDate = day + "_" + month + "_" + year;
       const slotTime = formatedTime;
       const isSlotAvailable =
-           docInfo.slots_booked
-        && docInfo.slots_booked[slotDate] 
-        && docInfo.slots_booked[slotDate].includes(slotTime)
+           docInfo.slot_booked
+        && docInfo.slot_booked[slotDate] 
+        && docInfo.slot_booked[slotDate].includes(slotTime)
           ? false
           : true;
       if (isSlotAvailable) {
         //  add slots to array
+        console.log("true")
         timeSlot.push({
           dateTime: new Date(currDate),
           time: formatedTime,
