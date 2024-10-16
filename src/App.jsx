@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/home.jsx";
+import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import About from "./pages/About";
 import Doctor from "./pages/Doctor";
@@ -8,7 +8,7 @@ import Alldoctors from "./pages/AllDoctors";
 import Contact from "./pages/Contact";
 import MyApointment from "./pages/MyApointment";
 import MyProfile from "./pages/MyProfile";
-import Appointment from "./pages/appointment";
+import Appointment from "./pages/Appointment";
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 import { ToastContainer } from "react-toastify";
