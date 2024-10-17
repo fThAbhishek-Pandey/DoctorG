@@ -24,16 +24,16 @@ const Sloting = () => {
   useEffect(fetchDocInfo , [doctors, docId]);
 
   useEffect( () => {
-    // console.log("docinfo 01",docInfo )
+    console.log("docinfo 01",docInfo )
     if (docInfo)
      GetAvailableSlot(setDoctorSlot, docInfo);
-    //  console.log("useffect : ",typeof doctorSlot, docInfo)
-  },[docInfo,doctorSlot]);
+     console.log("useffect : ",typeof doctorSlot, docInfo)
+  },[docInfo]);
 
   const onAppointmentHandler = async () => {
     // console.log("i am  onAppointmentHandler");
-    await BookAppointments(user_token, backendURL, navigate,slotIndex, setSlotIndex,doctorSlot, setDoctorSlot,docId,slotTime,getAllDoctors)
-     .then(GetAvailableSlot(setDoctorSlot, docInfo));
+    await BookAppointments(user_token, backendURL, navigate,slotIndex,  docInfo,doctorSlot, setDoctorSlot,docId,slotTime,getAllDoctors)
+    //  .then(GetAvailableSlot(setDoctorSlot, docInfo));
 
   };
 

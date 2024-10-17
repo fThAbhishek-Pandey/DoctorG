@@ -1,6 +1,6 @@
 import React from 'react'
 import { assets } from '../assets/assets'
-
+import { NavLink } from "react-router-dom";
 const Footer = () => {
     const date = new Date();
   return (
@@ -15,18 +15,18 @@ const Footer = () => {
             <div>
                 <p className='text-xl font-medium mb-5'>Quick Link</p>
                 <ul className='flex- flex-col gap-2 text-gray-600'>
-                    <li><NavLink></NavLink></li>
-                    <li>About us</li>
-                    <li>Contact us</li>
+                    <li><NavLink to=''></NavLink></li>
+                    <li><NavLink to='/about'></NavLink>About us</li>
+                    <li><NavLink to='/contact'></NavLink>Contact us</li>
                 </ul>
             </div>
             {/* right section */}
             <div>
                 <p className='text-xl font-medium mb-5'>Get In touch</p>
                 <ul className='flex- flex-col gap-2 text-gray-600'>
-                    <li>Linkedin</li>
-                    <li>Github</li>
-                    <li>+91 8467865427</li>
+                    <li><a className='hover:text-cyan-500' href="https://www.linkedin.com/in/abhishek-pandey2005" target='_blank'>Linkedin</a></li>
+                    <li><a className='hover:text-cyan-500' href="https://github.com/fThAbhishek-Pandey" target='_blank'>Github</a></li>
+                    <li><a className='hover:text-cyan-500' href="mailto:abhishek830564@gmail.com">abhishek830564@gmail.com</a></li>
                 </ul>
             </div>
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-const BookAppointments = async (user_token,backendURL, navigate,slotIndex, setSlotIndex,doctorSlot, setDoctorSlot,docId,slotTime,getAllDoctors) => {
+import GetAvailableSlot from "./Dating";
+const BookAppointments = async (user_token,backendURL, navigate,slotIndex,  docInfo,doctorSlot, setDoctorSlot,docId,slotTime,getAllDoctors) => {
   if (!user_token) {
     toast.warn("Plz login to book Appointment");
     return navigate("/login");
@@ -19,6 +20,7 @@ const BookAppointments = async (user_token,backendURL, navigate,slotIndex, setSl
       if(data.success){
         toast.success(data.message)
         getAllDoctors()
+        GetAvailableSlot(setDoctorSlot, docInfo)
         navigate('/my-appointment')
       }
       else{

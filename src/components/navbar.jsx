@@ -14,7 +14,10 @@ const Navbar = () => {
     }
   return (
     <div className='flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400'>
+        <div className='flex justify-evenly'>
         <img onClick={()=>Navigate('/')} className='w-44 cursor-pointer' src={assets.logo} alt="logo" />
+        <div><a className='bg-slate-200 hover:text-cyan-800' href="https://doctorgadm.vercel.app/" target='_blank'>Login as<br/>organization</a></div>
+        </div>
         <ul className='hidden md:flex items-start gap-5 font-medium'>
             <NavLink to='/'>
                 <li className='py-1'>Home</li>
